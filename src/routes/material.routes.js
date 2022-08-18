@@ -4,5 +4,6 @@ import {methods as materialController} from "./../controllers/material.controlle
 const router=Router();
 
 router.get("/",materialController.getmaterial);
+router.post("/",materialController.addmaterial);
 
 export default router;

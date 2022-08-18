@@ -10,6 +10,7 @@ app.set("port",3000);
 
 //middlewares
 app.use(morgan("dev"));
+app.use(express.json());
 
 //Routes
 app.use("/api/materiales", materialRoutes);

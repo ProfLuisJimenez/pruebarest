@@ -70,10 +70,15 @@ res.json("agregar material");
          }
          };
 
+         const checador=async(req,res)=>{
+            res.render('index',{titulo: 'funciona'});
+            };
+
 export const methods={
     getmaterial,
     getmat,
     addmaterial,
     delmaterial,
-    updatematerial
+    updatematerial,
+    checador
 }

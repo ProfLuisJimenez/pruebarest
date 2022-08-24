@@ -70,8 +70,8 @@ res.json("agregar material");
          }
          };
 
-         const checador=async(req,res)=>{
-            res.render('index',{titulo: 'funciona'});
+         const checador= async(req,res)=>{
+            res.render('index.hbs',{getmaterial});
             };
 
 export const methods={

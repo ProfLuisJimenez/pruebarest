@@ -1,5 +1,8 @@
 import {getConnection} from "./../database/database.js";
 
+const checador= async(req,res)=>{
+   res.render('index.hbs',{"nota":"hola mundo"});
+   };
 
 const getmaterial= async(req,res)=>{
  try{
@@ -70,15 +73,12 @@ res.json("agregar material");
          }
          };
 
-         const checador= async(req,res)=>{
-            res.render('index.hbs',{getmaterial});
-            };
-
 export const methods={
+    checador,
     getmaterial,
     getmat,
     addmaterial,
     delmaterial,
     updatematerial,
-    checador
+    
 }

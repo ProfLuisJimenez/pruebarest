@@ -1,26 +1,22 @@
 import express from "express";
 import morgan from "morgan";
-
-//routes
 import materialRoutes from "./routes/material.routes.js";
 
 const app=express();
+const hbs = require('hbs');
 
 //settings
 app.set("port",3000);
-
-//motores de plantilla
-const hbs = require('hbs');
-hbs.registerPartials(__dirname + '/views/partials', function (err){});
 app.set('view engine','hbs');
-app.set("views", __dirname +"/views");
-app.use(express.static(__dirname + "/public"));
+app.set('views', __dirname +'/views');
+hbs.registerPartials(__dirname + '/views/partials', function (err){});
+app.use(express.static(__dirname + '/public'));
 
 //middlewares
 app.use(morgan("dev"));
 app.use(express.json());
 
-//Routes
+//Ruta base
 app.use("/api/materiales", materialRoutes);
 
 export default app;

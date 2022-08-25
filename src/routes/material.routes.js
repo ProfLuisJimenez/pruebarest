@@ -10,5 +10,6 @@ router.delete("/:id",materialController.delmaterial);
 router.put("/:id",materialController.updatematerial);
 //checador
 router.get("/checador",materialController.checador);
+//router.get("/checador/reporte",checadorReporte);
 
 export default router;

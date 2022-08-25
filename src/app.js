@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import materialRoutes from "./routes/material.routes.js";
+import checadorRoutes from "./routes/checador.routes.js";
 
 const app=express();
 const hbs = require('hbs');
@@ -17,6 +17,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Ruta base
-app.use("/api/materiales", materialRoutes);
+app.use("/checador", checadorRoutes);
 
 export default app;

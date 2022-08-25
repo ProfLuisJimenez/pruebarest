@@ -1,10 +1,18 @@
-import {getConnection} from "./../database/database.js";
+import {getConnection} from "../database/database.js";
 
-const checador= async(req,res)=>{
-   res.render('index.hbs',{"nota":"hola mundo"});
+const listaUsuarios= async(req,res)=>{
+   try{
+      const connection=await getConnection();
+      const result=await connection.query("SELECT codigo,nombre,area,permisos FROM usuario");
+      var datos= JSON.stringify(result);
+      res.render('index',{datos});
+   }catch(error){
+      res.status(500);
+      res.send(error.message);
+   }
    };
 
-const getmaterial= async(req,res)=>{
+/* const getmaterial= async(req,res)=>{
  try{
     const connection=await getConnection();
     const result=await connection.query("SELECT id,nombre,descripcion,cantidad FROM material");
@@ -71,14 +79,8 @@ res.json("agregar material");
             res.status(500);
             res.send(error.message);
          }
-         };
+         }; */
 
 export const methods={
-    checador,
-    getmaterial,
-    getmat,
-    addmaterial,
-    delmaterial,
-    updatematerial,
-    
+    listaUsuarios
 }

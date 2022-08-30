@@ -8,8 +8,30 @@
     <title>Document</title>
 </head>
 <body>
-    {{#each datos}}
-    <h1 class="">{{codigo}}{{nombre}}{{area}}{{permisos}}</h1>
-    {{/each}}
+    {{>header}}
+    {{{body}}}
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Area</th>
+                <th scope="col">Permisos</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {{#each rows}}
+                    <tr>
+                        <td>{{codigo}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{area}}</td>
+                        <td>{{permisos}}</td>
+                    </tr>
+                    {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{>footer}}
 </body>
 </html>

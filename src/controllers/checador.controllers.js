@@ -4,8 +4,10 @@ const listaUsuarios= async(req,res)=>{
    try{
       const connection=await getConnection();
       const result=await connection.query("SELECT codigo,nombre,area,permisos FROM usuario");
-      var datos= JSON.stringify(result);
-      res.render('index',{datos});
+      var datosUsuarios= JSON.stringify(result);
+      //console.log(datosUsuarios);
+      //res.render('index',{codigo: result.codigo, nombre: result.nombre, area: result.area, permisos: result.permisos});
+      res.render('index',{result});
    }catch(error){
       res.status(500);
       res.send(error.message);

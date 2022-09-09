@@ -1,18 +1,52 @@
 import {getConnection} from "../database/database.js";
 
+function validarCodigo (codigo) {
+   if(codigo.match(/\d/g).length===7){
+      return false;
+   }
+   else return true;
+}
+
 const listaUsuarios= async(req,res)=>{
    try{
       const connection=await getConnection();
-      const result=await connection.query("SELECT codigo,nombre,area,permisos FROM usuario");
-      var datosUsuarios= JSON.stringify(result);
-      //console.log(datosUsuarios);
-      //res.render('index',{codigo: result.codigo, nombre: result.nombre, area: result.area, permisos: result.permisos});
-      res.render('index',{result});
+      const listausuarios=await connection.query("SELECT codigo,nombre,area,permisos FROM usuario");
+      res.render('index',{listausuarios});
    }catch(error){
       res.status(500);
       res.send(error.message);
    }
    };
+
+const listaChecadas= async(req,res)=>{
+   try{
+      const connection=await getConnection();
+      const listachecadas=await connection.query("SELECT id_check,cod_check,h_check FROM checado");
+      res.render('index',{listachecadas});
+   }catch(error){
+      res.status(500);
+      res.send(error.message);
+   }
+   };
+
+const checada = async(req,res)=>{
+   try{
+      const {codigo}=req.body.codigo;
+      if(codigo == undefined || validarCodigo(codigo)){
+        res.status(400).json({message:"Error al redactar el código"});
+      }
+      var idcheck = null;
+      var hora = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      const checado={idcheck,codigo,hora};
+      const connection=await getConnection();
+      const result=await connection.query("INSERT INTO checado SET ?",checado);
+      console.log("se checó correctamente");
+      res.json(result);
+   }catch(error){
+      res.status(500);
+      res.send(error.message);
+   }
+};
 
 /* const getmaterial= async(req,res)=>{
  try{
@@ -84,5 +118,7 @@ res.json("agregar material");
          }; */
 
 export const methods={
-    listaUsuarios
+   checada,
+   listaUsuarios,
+   listaChecadas
 }

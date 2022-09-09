@@ -2,8 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import checadorRoutes from "./routes/checador.routes.js";
 
-const app=express();
+const app = express();
 const hbs = require('hbs');
+const bodyParser = require('body-parser');
 
 //settings
 app.set("port",3000);
